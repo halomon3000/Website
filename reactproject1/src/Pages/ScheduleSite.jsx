@@ -1,3 +1,4 @@
+import './ScheduleSite.css'
 export function ScheduleSite() {
     return (
         <>

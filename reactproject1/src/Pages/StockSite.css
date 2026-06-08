@@ -1,0 +1,12 @@
+@import url('..\App.css');
+
+body {
+    background-color: var(--Pastel-Background);
+}
+h1 {
+    color: var(--Pastel-Accent1);
+}
+
+p {
+    color: var(--Pastel-Primary);
+}

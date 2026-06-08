@@ -34,23 +34,19 @@ export function StockLayout() {
                     </Link>
                 </nav>
 
-                {/* Simple visual connection indicator at bottom of sidebar */}
                 <div style={connectionStatusStyle}>
                     <span style={statusDotStyle}></span> Live Feed Connected
                 </div>
             </aside>
 
-            {/* 2. DYNAMIC CONTENT WRAPPER */}
             <div style={mainContentWrapperStyle}>
 
-                {/* Optional: Sub-header / Quick Stats Ticker */}
                 <header style={topSubHeaderStyle}>
                     <div style={tickerItemStyle}><strong>DJIA:</strong> <span style={{ color: '#00b074' }}>+0.42%</span></div>
                     <div style={tickerItemStyle}><strong>S&P 500:</strong> <span style={{ color: '#00b074' }}>+0.18%</span></div>
                     <div style={tickerItemStyle}><strong>NASDAQ:</strong> <span style={{ color: '#ff4d4f' }}>-0.12%</span></div>
                 </header>
 
-                {/* Dynamic child sub-pages (Dashboards, Live, etc.) inject here */}
                 <main style={mainContentBodyStyle}>
                     <Outlet />
                 </main>

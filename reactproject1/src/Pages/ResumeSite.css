@@ -1,0 +1,71 @@
+@import url('..\App.css');
+
+body{
+
+    background-color: var(--Mono-Background);
+
+}
+h1 {
+    color: var(--Mono-Accent1);
+}
+
+p {
+    color: var(--Mono-Primary);
+}
+/*Resume section*/
+.resume-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    border: 1px solid black; 
+}
+
+.resume-header {
+    border-bottom: 2px solid var(--Warm-Accent1);/*Line at the top of */
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.resume-name {
+    font-size: 2.5rem;
+    font-family: 'Helvetica Neue';
+    color: var(--Mono-Accent2);
+    margin: 0 0 8px 0;
+}
+
+.resume-title {
+    font-size: 1.2rem;
+    color: var(--Mono-Accent1);
+    font-weight: 600;
+    margin: 0;
+}
+
+.resume-main {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+}
+
+.resume-card {
+    background-color: var(--Mono-Accent2);
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid var(--Mono-Button);
+    box-shadow: var(--shadow);
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.company-name {
+    color: var(--Mono-Primary);
+    font-weight: bold;
+}
+
+.job-date {
+    color: var(--Mono-Primary);
+    font-size: 0.9rem;
+}

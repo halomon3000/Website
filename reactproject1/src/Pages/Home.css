@@ -1,0 +1,15 @@
+@import url('..\App.css');
+
+body {
+    background-color: var(--Mono-Background);
+}
+h1 {
+    color: var(--Mono-Accent1);
+}
+h2 {
+    color: var(--Mono-Accent2);
+}
+
+p {
+    color: var(--Mono-Primary);
+}

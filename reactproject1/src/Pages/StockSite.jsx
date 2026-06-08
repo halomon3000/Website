@@ -1,6 +1,6 @@
 import { Outlet, Link } from 'react-router-dom'
-
-
+import { StockLayout } from './StockLayout'
+import './StockSite.css'
 
 export function StockSite() {
     return (

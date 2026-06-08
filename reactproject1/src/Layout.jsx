@@ -5,10 +5,7 @@ import './App.css'
 export function Layout() {
     return (
         <>
-            <div class="resume-container" >
-                <div className="resume-header" ><Navbar /></div>
-                <div><Outlet/></div>
-            </div>
+            <div><Outlet/></div>
         </>
     )
 }
