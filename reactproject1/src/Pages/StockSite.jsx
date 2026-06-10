@@ -1,11 +1,10 @@
 import { Outlet, Link } from 'react-router-dom'
 import { StockLayout } from './StockLayout'
-import './StockSite.css'
+
 
 export function StockSite() {
     return (
         <div style={{ display: 'flex', minHeight: '80vh' }}>
-            {/* 1. Stock Sub-Navigation Sidebar */}
             <aside style={{ width: '240px', padding: '20px', borderRight: '1px solid #ccc' }}>
                 <h3>Stock Management Terminal</h3>
                 <nav style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>

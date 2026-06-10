@@ -19,52 +19,35 @@
     --Mono-Accent2: #444444;
     --Mono-Button: #888888;
 }
-/*
-div{
-    background-color:var(--Mono-Background);
-
-}
-
-
-
-.navbar-container {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: left;
-    margin: 0 auto;
-}
 
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #2C2C2C; 
-    font-family: sans-serif;
+    background-color: var(--Mono-Background);
 }
-
-h1,
-h2 {
-    font-family: var(--heading);
-    font-weight: 500;
-    color: var(--Warm-Primary); 
-}
-
 h1 {
-    font-size: 56px;
-    letter-spacing: -1.68px;
-    margin: 32px 0;
+    color: var(--Mono-Accent1);
 }
-
 h2 {
-    font-size: 24px;
-    line-height: 118%;
-    letter-spacing: -0.24px;
-    margin: 0 0 8px;
+    color: var(--Mono-Accent2);
+}
+p {
+    color: var(--Mono-Primary);
 }
 
-p {
-    margin: 0;
+.navbar {
+  background-color: var(--Mono-Accent2); 
+  display: flex;
+  align-items: center;
+
+}
+
+.navbar a{
+    color: var(--Mono-Button);
+    padding: 15px 15px;
+    
+}
+.navbar a.active {
+  text-decoration: underline;
+  background-color: var(--Mono-Accent1);
 }
 
 .stack-container {
@@ -72,4 +55,3 @@ p {
     flex-direction: column; 
     row-gap: 20px;
 }
-*/

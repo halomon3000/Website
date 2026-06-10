@@ -1,4 +1,4 @@
-
+import './App.css'
 import { Layout } from './Layout'
 import { BrowserRouter as Router, Routes, Route, Navigate, NavLink } from 'react-router-dom'
 import { Home } from './Pages/Home'
@@ -14,23 +14,17 @@ import { TrendingSite } from './Pages/StockSites/TrendingSite'
 import { ReportSite } from './Pages/StockSites/ReportSite'
 import { AlarmSite } from './Pages/StockSites/AlarmSite'
 
-// Style function for active links
-const navLinkStyles = ({ isActive }) => ({
-    color: isActive ? '#007bff' : '#FFFFFF',
-    textDecoration: isActive ? 'none' : 'underline',
-    fontWeight: isActive ? 'bold' : 'normal',
-    padding: '5px 10px'
-});
+
 function App() {
     return (
         <Router>
-            <nav style={{ marginBottom: '20px' }}>
-                <NavLink to="/" style={navLinkStyles}>Home</NavLink> 
-                <NavLink to="/Blog" style={navLinkStyles}>Blog</NavLink> 
-                <NavLink to="/Resume" style={navLinkStyles}>Resume</NavLink>
-                <NavLink to="/Projects" style={navLinkStyles}>Projects</NavLink>
-                <NavLink to="/Schedule" style={navLinkStyles}>Schedule</NavLink>
-                <NavLink to="/Stock" style={navLinkStyles}>Stock</NavLink>
+            <nav className="navbar" >
+                <NavLink to="/">Home</NavLink> 
+                <NavLink to="/Blog">Blog</NavLink> 
+                <NavLink to="/Resume">Resume</NavLink>
+                <NavLink to="/Projects">Projects</NavLink>
+                <NavLink to="/Schedule">Schedule</NavLink>
+                <NavLink to="/Stock">Stock</NavLink>
             </nav>
             <Routes>
                 <Route element={<Layout />}>
