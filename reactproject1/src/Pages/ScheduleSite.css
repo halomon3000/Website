@@ -1,0 +1,32 @@
+.schedule-header {
+    background-color: var(--Mono-Accent2);
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid var(--Mono-Button);
+    box-shadow: var(--Mono-Accent1);
+}
+
+.monthText {
+    text-align: center;
+    Font-size: 32px;
+    padding: 6px;
+}
+
+.yearText {
+    padding: 6px;
+    text-align: center;
+    Font-size: 32px;
+}
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-top: 20px;
+}
+.date-box {
+    background-color: var(--Mono-Accent1);
+    padding: 16px;
+    border: 1px solid var(--Mono-Button);
+    box-shadow: var(--Mono-Accent2);
+    height: 200px;
+
+}
