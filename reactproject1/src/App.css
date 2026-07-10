@@ -48,6 +48,7 @@ p {
 .navbar a.active {
   text-decoration: underline;
   background-color: var(--Mono-Accent1);
+  color: var(--Mono-Background);
 }
 
 .stack-container {
