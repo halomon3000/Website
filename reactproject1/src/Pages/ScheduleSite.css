@@ -6,20 +6,16 @@
     box-shadow: var(--Mono-Accent1);
     height:50px;
     display: flex;
-    justify-content: center; /* Centers horizontally */
+    justify-content: space-between;
     align-items: center;
 }
 
-.monthText {
-    text-align: center;
-    Font-size: 32px;
-    padding: 6px;
-}
 
 .yearText {
     padding: 6px;
     text-align: center;
     Font-size: 32px;
+   
 }
 .schedule-grid {
     display: grid;

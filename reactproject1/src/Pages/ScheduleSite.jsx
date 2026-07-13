@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import './ScheduleSite.css';
 
+/*The images for Month selection buttons */
+import nextMonthButton from '..\\assets\\arrow-right-circle.svg'
+import nextMonthButtonOnClick from '..\\assets\\arrow-right-circle-fill.svg'
+import prevMonthButton from '..\\assets\\arrow-left-circle.svg'
+import prevMonthButtonOnClick from '..\\assets\\arrow-left-circle-fill.svg'
+
 export function ScheduleSite() {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedDay, setSelectedDay] = useState(null);
@@ -14,6 +20,21 @@ export function ScheduleSite() {
     const divDaysOfWeek = [];
     const DaysArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
+    const changeMonth = (e) => {
+        const elementId = e.currentTarget.id
+        const newDate = new Date(currentDate);
+        if(elementId === "prevMonthButton"){
+            newDate.setMonth(currentDate.getMonth() - 1);
+        } else if(elementId === "nextMonthButton"){
+            newDate.setMonth(currentDate.getMonth() + 1);
+        } else {
+            console.log("clicked:",elementId)
+        }
+        
+        setCurrentDate(newDate)
+        
+    }
+
     for(let j = 0; j < 7; j++) {
         divDaysOfWeek.push(
             <div className="days-of-week">
@@ -24,7 +45,7 @@ export function ScheduleSite() {
     for(let k = firstDay.getDay(); k > 0;k--){/*Adds the last days of the previous month */
         divDates.push(
         <div className="date-space">
-            <h3>{lastDayPrevMonth.getDate() - k}</h3>
+            <h3>{lastDayPrevMonth.getDate() - k+1}</h3>
         </div>
         );    
     }
@@ -35,7 +56,7 @@ export function ScheduleSite() {
         </div>
         );
     }
-    for(let p = 1; p < 7-lastDay.getDay();p++){/*Adds the last days of the previous month */
+    for(let p = 1; p < 7-lastDay.getDay();p++){/*Adds the first days of the next month */
         divDates.push(
         <div className="date-space">
             <h3>{p}</h3>
@@ -44,8 +65,10 @@ export function ScheduleSite() {
     }
     return (
         <>
-            <div className='schedule-header'>
+            <div className='schedule-header' >
+                <img id='prevMonthButton' src={prevMonthButton} onClick={changeMonth}/>
                 <h1 className='yearText'> {currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()} </h1>
+                <img id='nextMonthButton' src={nextMonthButton} onClick={changeMonth}/>
             </div>
             <div className='schedule-grid'> 
                 {divDaysOfWeek}

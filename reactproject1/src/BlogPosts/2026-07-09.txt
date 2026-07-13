@@ -1,0 +1,3 @@
+I have been able to create spaces before and after the main dates of the month that show the days of the previous/next month and align the current month below the proper days of the week. I have been for loops alot and have decided to use a different iterator for each loop as it doesnt seem I can reuse i for all of them.
+
+Up Next: On click buttons change the current month
