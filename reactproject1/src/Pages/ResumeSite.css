@@ -12,6 +12,7 @@
     border-bottom: 2px solid var(--Warm-Accent1);/*Line at the top of */
     padding-bottom: 20px;
     margin-bottom: 30px;
+    font-size: 32px;
 }
 
 .resume-name {
@@ -51,10 +52,14 @@
 .company-name {
     color: var(--Mono-Primary);
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 32px;
 }
 
 .job-date {
     color: var(--Mono-Primary);
-    font-size: 0.9rem;
+    font-size: 30px;
 }
+p {
+    font-size: 24px;
+}
+
