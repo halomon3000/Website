@@ -1,22 +1,18 @@
+version: 0.2
+
 name: Deploy React App
 on:
   push:
     branches: [ main ]
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Required for OIDC
+      contents: read
     steps:
-      - uses: actions/checkout@v3
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
-      - name: Deploy to S3
-        uses: jakejarvis/s3-sync-action@master
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          args: --acl public-read --delete
-        env:
-          SOURCE_DIR: 'build/'
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: arn:aws:iam::YOUR_ACCOUNT_ID:role/YOUR_ROLE_NAME
+          aws-region: us-east-1
