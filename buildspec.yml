@@ -1,5 +1,7 @@
 YAML
 
+version: 0.2
+
 name: Deploy React App
 on:
   push:
