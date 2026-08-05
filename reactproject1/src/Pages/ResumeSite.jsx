@@ -118,7 +118,7 @@ export function ResumeSite() {
                         <span className="job-date">February 2025 - February 2027</span>
                     </div>
                     <div className="job-header">
-                        <span className="company-name">AWS Certified Solutions Architect � Associate</span>
+                        <span className="company-name">AWS Certified Solutions Architect Associate</span>
                         <span className="job-date">July 2025 - July 2028</span>
                     </div>
                 </section>

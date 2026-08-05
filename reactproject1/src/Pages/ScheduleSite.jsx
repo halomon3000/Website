@@ -7,7 +7,7 @@ import nextMonthButtonOnClick from '..\\assets\\arrow-right-circle-fill.svg'
 import prevMonthButton from '..\\assets\\arrow-left-circle.svg'
 import prevMonthButtonOnClick from '..\\assets\\arrow-left-circle-fill.svg'
 
-import EventModal from '../components/EventModal';
+
 
 export function ScheduleSite() {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -39,7 +39,7 @@ export function ScheduleSite() {
 
     const [isDayModalOpen, setDayIsModalOpen] = useState(false);
 
-    const 
+
 
 
     /*These 4 for loops layout the calendar boxes */
@@ -73,7 +73,7 @@ export function ScheduleSite() {
     }
     return (
         <>
-            <div className='schedule-header' >
+            <div className='schedule-header'>
                 <img id='prevMonthButton' src={prevMonthButton} onClick={changeMonth}/>
                 <h1 className='yearText'> {currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()} </h1>
                 <img id='nextMonthButton' src={nextMonthButton} onClick={changeMonth}/>
