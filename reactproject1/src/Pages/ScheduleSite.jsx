@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import './ScheduleSite.css';
 
 /*The images for Month selection buttons */
-import nextMonthButton from '..\\assets\\arrow-right-circle.svg'
-import nextMonthButtonOnClick from '..\\assets\\arrow-right-circle-fill.svg'
-import prevMonthButton from '..\\assets\\arrow-left-circle.svg'
-import prevMonthButtonOnClick from '..\\assets\\arrow-left-circle-fill.svg'
+import nextMonthButton from '../assets/arrow-right-circle.svg'
+import nextMonthButtonOnClick from '../assets/arrow-right-circle-fill.svg'
+import prevMonthButton from '../assets/arrow-left-circle.svg'
+import prevMonthButtonOnClick from '../assets/arrow-left-circle-fill.svg'
 
 
 
