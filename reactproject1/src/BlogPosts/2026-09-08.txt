@@ -1,0 +1,2 @@
+I have gotten the website hosted in S3 and I am making a choice on the database to use for the Stock and Schedule portions of this site. I will use DynamoDB for the calendar app because there may be attributes I do not plan for at the beginning and not all events on the calendar will have the same attributes. I will use RDS for the stock data so I can use joins and complex transactions in my graphs as well as AWS Suite for graphs(maybe).
+
