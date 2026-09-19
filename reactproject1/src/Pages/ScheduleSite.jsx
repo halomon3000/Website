@@ -75,7 +75,7 @@ export function ScheduleSite() {
     const [notificationReminder, setnotificationReminder] = useState(true);
 
     const submitEvent = async () => {
-        // Construct the payload matching what your Lambda expects
+        
         const eventData = {
             startDate,
             endDate,
@@ -86,8 +86,8 @@ export function ScheduleSite() {
         };
 
         try {
-            // Replace with your actual API Gateway Invoke URL and route
-            const response = await fetch("https://49p5qeil63.execute-api.us-east-1.amazonaws.com/events", {
+
+            const response = await fetch("https://6sst5xcr02.execute-api.us-east-1.amazonaws.com/events", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
