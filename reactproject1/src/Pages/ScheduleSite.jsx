@@ -15,6 +15,8 @@ export function ScheduleSite() {
     const lastDayPrevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
     const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
     
+    const [isDayModalOpen, setDayIsModalOpen] = useState(false);
+
     const divDates = [];
     const divDatesSpaces = [];
     const divDaysOfWeek = [];
@@ -34,8 +36,27 @@ export function ScheduleSite() {
         setCurrentDate(newDate)
         
     }
+    
+    const handleDateClick = (day,monthData) => {
+        // Format the date or set it directly based on your current month/year
+        let clickedDate
+        if(monthData == "Previous"){
+            clickedDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, day);
+        }
+        else if (monthData == "Next"){
+            clickedDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, day);
+        }
+        else {
+            clickedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+        }
 
-    const [isDayModalOpen, setDayIsModalOpen] = useState(false);
+        // Format as YYYY-MM-DD or however your input expects it
+        const formattedDate = clickedDate.toISOString().split('T')[0];
+
+        setSelectedDay(formattedDate);
+        setDayIsModalOpen(true);
+        console.log("Clicked date:", formattedDate);
+    };
 
     /*These 4 for loops layout the calendar boxes */
     for(let j = 0; j < 7; j++) {
@@ -47,21 +68,21 @@ export function ScheduleSite() {
     }
     for(let k = firstDay.getDay(); k > 0;k--){/*Adds the last days of the previous month */
         divDates.push(
-        <div key={"PrevMonth-" + k} className="date-space">
+        <div key={"PrevMonth-" + k} className="date-space" onClick={() => handleDateClick(lastDayPrevMonth.getDate() - k+1, "Previous")}>
             <h3>{lastDayPrevMonth.getDate() - k+1}</h3>
         </div>
         );    
     }
     for (let i = 1; i <= lastDay.getDate(); i++) {
         divDates.push(
-        <div key={"Date" + i} className="date-box">
+        <div key={"Date" + i} className="date-box" onClick={() => handleDateClick(i, "Current")}>
             <h3>{i}</h3>
         </div>
         );
     }
     for(let p = 1; p < 7-lastDay.getDay();p++){/*Adds the first days of the next month */
         divDates.push(
-        <div key={"NextMonth-" + p} className="date-space">
+        <div key={"NextMonth-" + p} className="date-space" onClick={() => handleDateClick(p,"Next")}>
             <h3>{p}</h3>
         </div>
         );    
@@ -73,6 +94,7 @@ export function ScheduleSite() {
     const [eventTitle, setEventTitle] = useState('');
     const [eventDescription, setEventDescription] = useState('');
     const [notificationReminder, setnotificationReminder] = useState(true);
+    const [savedEvents, setSavedEvents] = useState([]);
 
     const submitEvent = async () => {
         
@@ -108,6 +130,22 @@ export function ScheduleSite() {
             alert("Error saving event. Check console for details.");
         }
     };
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                // Replace with your actual HTTP API Invoke URL + /events
+                const response = await fetch("https://6sst5xcr02.execute-api.us-east-1.amazonaws.com/events");
+                if (!response.ok) throw new Error("Failed to fetch events");
+                const data = await response.json();
+                setSavedEvents(data);
+            } catch (error) {
+                console.error("Error loading events:", error);
+            }
+        };
+
+        fetchEvents();
+    }, []);
+
 
     return (
         <>
@@ -137,6 +175,21 @@ export function ScheduleSite() {
                 <input type="checkbox" value={notificationReminder} onChange={(e) => setnotificationReminder(e.target.value)}/>
                 <button type="button" onClick={submitEvent}>Submit</button>
             </div>
+             <div className='events-list'>
+                <h2>Saved Events:</h2>
+                <ul>
+                    {savedEvents.map((evt) => (
+                        <li key={evt.eventId || evt.startDate}>
+                            <strong>{evt.eventTitle}</strong> ({evt.startDate}) - {evt.eventDescription}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div>
+                <h1>{selectedDay}</h1>
+            </div>
+            
+
         </>     
     )
 }
