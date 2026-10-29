@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import './ScheduleSite.css';
+import './ScheduleSites/AddEvent.jsx'
+
+import { useNavigate } from 'react-router-dom';
 
 /*The images for Month selection buttons */
 import nextMonthButton from '../assets/arrow-right-circle.svg'
@@ -9,7 +12,6 @@ import prevMonthButtonOnClick from '../assets/arrow-left-circle-fill.svg'
 
 export function ScheduleSite() {
     const [currentDate, setCurrentDate] = useState(new Date());
-    const [selectedDay, setSelectedDay] = useState(null);
 
     const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     const lastDayPrevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
@@ -22,6 +24,8 @@ export function ScheduleSite() {
     const divDaysOfWeek = [];
     const DaysArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
+    const [savedEvents, setSavedEvents] = useState([]);
+      
     const changeMonth = (e) => {
         const elementId = e.currentTarget.id
         const newDate = new Date(currentDate);
@@ -37,8 +41,10 @@ export function ScheduleSite() {
         
     }
     
+    const navigate = useNavigate();
+
     const handleDateClick = (day,monthData) => {
-        // Format the date or set it directly based on your current month/year
+        // Take me to the AddEvent Page please
         let clickedDate
         if(monthData == "Previous"){
             clickedDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, day);
@@ -53,9 +59,10 @@ export function ScheduleSite() {
         // Format as YYYY-MM-DD or however your input expects it
         const formattedDate = clickedDate.toISOString().split('T')[0];
 
-        setSelectedDay(formattedDate);
         setDayIsModalOpen(true);
         console.log("Clicked date:", formattedDate);
+        navigate('/AddEvent', {state: { startDay: formattedDate }})
+
     };
 
     /*These 4 for loops layout the calendar boxes */
@@ -88,48 +95,6 @@ export function ScheduleSite() {
         );    
     }
 
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [isAllDay, setAllDay] = useState(false);
-    const [eventTitle, setEventTitle] = useState('');
-    const [eventDescription, setEventDescription] = useState('');
-    const [notificationReminder, setnotificationReminder] = useState(true);
-    const [savedEvents, setSavedEvents] = useState([]);
-
-    const submitEvent = async () => {
-        
-        const eventData = {
-            startDate,
-            endDate,
-            isAllDay,
-            eventTitle,
-            eventDescription,
-            notificationReminder
-        };
-
-        try {
-
-            const response = await fetch("https://6sst5xcr02.execute-api.us-east-1.amazonaws.com/events", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(eventData),
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const result = await response.json();
-            console.log("Success:", result);
-            alert("Event saved successfully!");
-            
-        } catch (error) {
-            console.error("Failed to save event:", error);
-            alert("Error saving event. Check console for details.");
-        }
-    };
     useEffect(() => {
         const fetchEvents = async () => {
             try {
@@ -160,21 +125,7 @@ export function ScheduleSite() {
             <div className='schedule-grid'>
                 {divDates}
             </div>
-            <div>
-                <h1>Start Date:</h1>
-                <input type="text" value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
-                <h1>End Date:</h1>
-                <input type="text" value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
-                <h1>All Day:</h1>
-                <input type="checkbox" value={isAllDay} onChange={(e) => setAllDay(e.target.value)}/>
-                <h1>Title:</h1>
-                <input type="text" value={eventTitle} onChange={(e) => setEventTitle(e.target.value)}/>
-                <h1>Description:</h1>
-                <input type="text" value={eventDescription} onChange={(e) => setEventDescription(e.target.value)}/>
-                <h1>Remind Notification:</h1>
-                <input type="checkbox" value={notificationReminder} onChange={(e) => setnotificationReminder(e.target.value)}/>
-                <button type="button" onClick={submitEvent}>Submit</button>
-            </div>
+            
              <div className='events-list'>
                 <h2>Saved Events:</h2>
                 <ul>
@@ -185,10 +136,7 @@ export function ScheduleSite() {
                     ))}
                 </ul>
             </div>
-            <div>
-                <h1>{selectedDay}</h1>
-            </div>
-            
+
 
         </>     
     )

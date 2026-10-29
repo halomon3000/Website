@@ -1,0 +1,1 @@
+Today I am working on the date selection onclick capability for the schedule, right now it just writes to console. I discovered that if I set a state variable in a javascript function it will not change until after the function because it is asynchronous. Also, I discovered that I shouldnt declare const variables in an if/else block, I need to use the let keyword.
