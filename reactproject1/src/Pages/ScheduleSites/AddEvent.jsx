@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../ScheduleSite.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
@@ -8,15 +8,22 @@ export function AddEvent() {
     const location = useLocation();//tracks state from previous page
     const tempDay = location.state?.startDay;
     const [startDate, setStartDate] = useState(location.state?.startDay || '');
+    const [startTime, setStartTime] = useState('');
     const [endDate, setEndDate] = useState('');
+    const [endTime, setEndTime] = useState('');
     const [isAllDay, setAllDay] = useState(true);
     const [eventTitle, setEventTitle] = useState('');
     const [eventDescription, setEventDescription] = useState('');
     const [notificationReminder, setnotificationReminder] = useState(true);
-    
+
+    const handleIsAllDayClick = (event) => {//If I try to change this in the input tag it becomes unclickable
+        setAllDay(event.target.checked);
+    };
+
+    const navigate = useNavigate();
 
     const submitEvent = async () => {
-        
+
         const eventData = {
             startDate,
             endDate,
@@ -43,41 +50,50 @@ export function AddEvent() {
             const result = await response.json();
             console.log("Success:", result);
             alert("Event saved successfully!");
-            
+
         } catch (error) {
             console.error("Failed to save event:", error);
             alert("Error saving event. Check console for details.");
         }
+        navigate('/Schedule')
     };
 
+    const cancelEvent = async () => {
+        navigate('/Schedule')
+    };
 
-
-
-
-        return (
-            <>
-                <div><h1>{tempDay}</h1></div>
-                <div>
+    return (
+        <>
+            <div><h1>{tempDay}</h1></div>
+            <div>
                 <h1>Start Date:</h1>
-                <input type="text" value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
-                <h1>End Date:</h1>
-                <input type="text" value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
+                <input type="text" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+                { !isAllDay && (
+                    <div>
+                        <h1>Start Time:</h1>
+                        <input type="text" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
+                        <h1>End Date:</h1>
+                        <input type="text" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+                        <h1>End Time:</h1>
+                        <input type="text" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+                    </div>
+                )}
                 <h1>All Day:</h1>
-                <input type="checkbox" value={isAllDay} onChange={(e) => setAllDay(e.target.value)}/>
+                <input type="checkbox" checked={isAllDay} onChange={handleIsAllDayClick} />
                 <h1>Title:</h1>
                 <input type="text" value={eventTitle} onChange={(e) => setEventTitle(e.target.value)}/>
                 <h1>Description:</h1>
-                <input type="text" value={eventDescription} onChange={(e) => setEventDescription(e.target.value)}/>
+                <input type="text" value={eventDescription} onChange={(e) => setEventDescription(e.target.value)} />
                 <h1>Remind Notification:</h1>
-                <input type="checkbox" value={notificationReminder} onChange={(e) => setnotificationReminder(e.target.value)}/>
+                <input type="checkbox" value={notificationReminder} onChange={(e) => setnotificationReminder(e.target.value)} />
                 <button type="button" onClick={submitEvent}>Submit</button>
-                </div>
-                
-                
-    
-            </>     
-        )
-    }
+                <button type="button" onClick={cancelEvent}>Cancel</button>
+            </div>
 
 
-    
+
+        </>
+    )
+}
+
+
