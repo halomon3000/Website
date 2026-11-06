@@ -33,6 +33,10 @@ p {
     color: var(--Mono-Primary);
 }
 
+ul {
+    color: var(--Mono-Primary);
+}
+
 .navbar {
   background-color: var(--Mono-Accent2); 
   display: flex;
