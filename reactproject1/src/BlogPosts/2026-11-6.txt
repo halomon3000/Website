@@ -1,0 +1,1 @@
+Switched to Claude after Gemini continued to give incorrect answers and get confused. Implemented client side validation, still need server side validation.

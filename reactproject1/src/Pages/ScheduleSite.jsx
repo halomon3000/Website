@@ -17,10 +17,10 @@ export function ScheduleSite() {
     const lastDayPrevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
     const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
     
-    const [isDayModalOpen, setDayIsModalOpen] = useState(false);
+    const pad = (n) => String(n).padStart(2, '0');
+    const toDateStr = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 
     const divDates = [];
-    const divDatesSpaces = [];
     const divDaysOfWeek = [];
     const DaysArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
@@ -43,6 +43,13 @@ export function ScheduleSite() {
     
     const navigate = useNavigate();
 
+    const getEventsForDate = (dateStr) =>
+        savedEvents.filter((evt) => {
+        const start = evt.startDate;
+        const end = evt.endDate || evt.startDate; // all-day events may have no endDate
+        return start <= dateStr && dateStr <= end; // yyyy-MM-dd strings compare correctly
+    });
+
     const handleDateClick = (day,monthData) => {
         // Take me to the AddEvent Page please
         let clickedDate
@@ -59,7 +66,6 @@ export function ScheduleSite() {
         // Format as YYYY-MM-DD or however your input expects it
         const formattedDate = clickedDate.toISOString().split('T')[0];
 
-        setDayIsModalOpen(true);
         console.log("Clicked date:", formattedDate);
         navigate('/AddEvent', {state: { startDay: formattedDate }})
 
@@ -81,10 +87,29 @@ export function ScheduleSite() {
         );    
     }
     for (let i = 1; i <= lastDay.getDate(); i++) {
+        const cellDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
+        const cellStr = toDateStr(cellDate);
+        const dayEvents = getEventsForDate(cellStr);
         divDates.push(
-        <div key={"Date" + i} className="date-box" onClick={() => handleDateClick(i, "Current")}>
-            <h3>{i}</h3>
-        </div>
+            <div key={"Date" + i} className="date-box" onClick={() => handleDateClick(i, "Current")}>
+                <h3>{i}</h3>
+                {dayEvents.map((evt) => {
+                    const end = evt.endDate || evt.startDate;
+                    const isStart = evt.startDate === cellStr;
+                    const isEnd = end === cellStr;
+                    const isSunday = cellDate.getDay() === 0;
+
+                    return (
+                        <div
+                            key={evt.eventId || evt.eventTitle + evt.startDate}
+                            className={`event ${isStart ? 'event-start' : ''} ${isEnd ? 'event-end' : ''}`}
+                            onClick={(e) => e.stopPropagation()} // don't trigger the date box's onClick
+                        >
+                            <h4>{isStart || isSunday ? evt.eventTitle : '\u00A0'}</h4>
+                        </div>
+                    );
+                })}
+            </div>
         );
     }
     for(let p = 1; p < 7-lastDay.getDay();p++){/*Adds the first days of the next month */
@@ -115,9 +140,9 @@ export function ScheduleSite() {
     return (
         <>
             <div className='schedule-header'>
-                <img id='prevMonthButton' src={prevMonthButton} onClick={changeMonth}/>
+                <img id='prevMonthButton' className="month-btn prev" onClick={changeMonth}/>
                 <h1 className='yearText'> {currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()} </h1>
-                <img id='nextMonthButton' src={nextMonthButton} onClick={changeMonth}/>
+                <img id='nextMonthButton' className="month-btn next" onClick={changeMonth}/>
             </div>
             <div className='schedule-grid'> 
                 {divDaysOfWeek}
