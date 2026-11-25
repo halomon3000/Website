@@ -1,0 +1,68 @@
+Sat
+28
+6:30 a.m. - 3:30 p.m.
+Front Service Clerk
+Store #1875
+8 hours
+6:30 a.m. - 7 a.m.
+Front Service Clerk
+7 a.m. - 3:30 p.m.
+Cust Serv Team Leader
+11 a.m. - 12 p.m.
+Meal
+Swap
+Offer
+Sun
+29
+1 p.m. - 10 p.m.
+Cust Serv Team Leader
+Store #1875
+8 hours
+1 p.m. - 10 p.m.
+Cust Serv Team Leader
+5 p.m. - 6 p.m.
+Meal
+Swap
+Offer
+Mon
+30
+Not Scheduled
+Tue
+1
+10 a.m. - 6 p.m.
+Cust Serv Team Leader
+Store #1875
+7 hours
+10 a.m. - 6 p.m.
+Cust Serv Team Leader
+2:15 p.m. - 3:15 p.m.
+Meal
+Swap
+Offer
+Wed
+2
+Not Scheduled
+Thu
+3
+1 p.m. - 10 p.m.
+Cust Serv Team Leader
+Store #1875
+8 hours
+1 p.m. - 10 p.m.
+Cust Serv Team Leader
+5 p.m. - 6 p.m.
+Meal
+Swap
+Offer
+Fri
+4
+10 a.m. - 7 p.m.
+Cust Serv Team Leader
+Store #1875
+8 hours
+10 a.m. - 7 p.m.
+Cust Serv Team Leader
+2 p.m. - 3 p.m.
+Meal
+Swap
+Offer

@@ -1,0 +1,75 @@
+Schedule
+Net hours: 39
+
+11/21/2026
+
+
+Scheduled
+Shift Pickup
+Requests
+Sat
+21
+Not Scheduled
+Sun
+22
+10 a.m. - 6:45 p.m.
+Cust Serv Team Leader
+Store #1875
+7.75 hours
+10 a.m. - 6:45 p.m.
+Cust Serv Team Leader
+2 p.m. - 3 p.m.
+Meal
+Swap
+Offer
+Mon
+23
+10 a.m. - 6 p.m.
+Cust Serv Team Leader
+Store #1875
+7 hours
+10 a.m. - 6 p.m.
+Cust Serv Team Leader
+2 p.m. - 3 p.m.
+Meal
+Swap
+Offer
+Tue
+24
+1 p.m. - 10 p.m.
+Cust Serv Team Leader
+Store #1875
+8 hours
+1 p.m. - 10 p.m.
+Cust Serv Team Leader
+5 p.m. - 6 p.m.
+Meal
+Swap
+Offer
+Wed
+25
+1 p.m. - 10 p.m.
+Cust Serv Team Leader
+Store #1875
+8 hours
+1 p.m. - 10 p.m.
+Cust Serv Team Leader
+5 p.m. - 6 p.m.
+Meal
+Swap
+Offer
+Thu
+26
+Not Scheduled
+Fri
+27
+9:45 a.m. - 7 p.m.
+Cust Serv Team Leader
+Store #1875
+8.25 hours
+9:45 a.m. - 7 p.m.
+Cust Serv Team Leader
+2 p.m. - 3 p.m.
+Meal
+Swap
+Offer

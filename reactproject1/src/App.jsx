@@ -9,6 +9,7 @@ import { ScheduleSite } from './Pages/ScheduleSite'
 import { StockSite } from './Pages/StockSite'
 
 import { AddEvent } from './Pages/ScheduleSites/AddEvent'
+import { AddBulkEvent } from './Pages/ScheduleSites/AddBulkEvent'
 
 import { DashboardSite } from './Pages/StockSites/DashboardSite'
 import { LiveSite } from './Pages/StockSites/LiveSite'
@@ -36,7 +37,7 @@ function App() {
                     <Route path="/Resume" element={<ResumeSite />} />
                     <Route path="/Schedule" element={<ScheduleSite />} />
                         <Route path="AddEvent" element={<AddEvent />}  />
-
+                        <Route path="AddBulkEvent" element={<AddBulkEvent />}  />
                     <Route path="/Stock" element={<StockSite />}>
                         <Route index element={<Navigate to="Dashboards" replace />} />
                         <Route path="Dashboards" element={<DashboardSite />} />

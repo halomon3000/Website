@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react';
 import './ScheduleSite.css';
 import './ScheduleSites/AddEvent.jsx'
+import './ScheduleSites/AddBulkEvent.jsx'
 
 import { useNavigate } from 'react-router-dom';
 
-/*The images for Month selection buttons */
-import nextMonthButton from '../assets/arrow-right-circle.svg'
-import nextMonthButtonOnClick from '../assets/arrow-right-circle-fill.svg'
-import prevMonthButton from '../assets/arrow-left-circle.svg'
-import prevMonthButtonOnClick from '../assets/arrow-left-circle-fill.svg'
 
 export function ScheduleSite() {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -51,7 +47,7 @@ export function ScheduleSite() {
     });
 
     const handleDateClick = (day,monthData) => {
-        // Take me to the AddEvent Page please
+
         let clickedDate
         if(monthData == "Previous"){
             clickedDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, day);
@@ -123,7 +119,6 @@ export function ScheduleSite() {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                // Replace with your actual HTTP API Invoke URL + /events
                 const response = await fetch("https://6sst5xcr02.execute-api.us-east-1.amazonaws.com/events");
                 if (!response.ok) throw new Error("Failed to fetch events");
                 const data = await response.json();
@@ -136,6 +131,9 @@ export function ScheduleSite() {
         fetchEvents();
     }, []);
 
+    const addBulkEvent = async () => {
+        navigate('/AddBulkEvent')
+    };    
 
     return (
         <>
@@ -150,19 +148,7 @@ export function ScheduleSite() {
             <div className='schedule-grid'>
                 {divDates}
             </div>
-            
-             <div className='events-list'>
-                <h2>Saved Events:</h2>
-                <ul>
-                    {savedEvents.map((evt) => (
-                        <li key={evt.eventId || evt.startDate}>
-                            <strong>{evt.eventTitle}</strong> ({evt.startDate}) - {evt.eventDescription}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-
+            <button type="button" onClick={addBulkEvent}>Add Bulk Events</button>
         </>     
     )
 }

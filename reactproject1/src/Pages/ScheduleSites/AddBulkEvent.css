@@ -1,0 +1,8 @@
+.BulkEventBox {
+    width: 100%;          /* Fills the container width (or use a fixed value like 400px) */
+    max-width: 500px;     /* Prevents the box from getting too wide on large screens */
+    padding: 12px 16px;   /* Increases inner space, making the box taller and wider */
+    font-size: 18px;      /* Enlarges the typed text and placeholder */
+    box-sizing: border-box;
+
+}

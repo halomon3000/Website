@@ -23,8 +23,8 @@ export function AddEvent() {
 
     const navigate = useNavigate();
 
-    const submitEvent = async () => {
-
+    const submitEvent = async (e) => {
+        e.preventDefault(); 
         const eventData = {
             startDate,
             startTime,
@@ -35,7 +35,7 @@ export function AddEvent() {
             eventDescription,
             notificationReminder
         };
-
+        
         try {
 
             const response = await fetch("https://6sst5xcr02.execute-api.us-east-1.amazonaws.com/events", {
@@ -56,7 +56,7 @@ export function AddEvent() {
 
         } catch (error) {
             console.error("Failed to save event:", error);
-            alert("Error saving event. Check console for details.");
+            //alert("Error saving event. Check console for details.");
         }
         navigate('/Schedule')
     };
@@ -72,12 +72,12 @@ export function AddEvent() {
                 <form onSubmit={submitEvent}>
                     <h1>Start Date:</h1>
                     <input className = "DateInput" type="text" placeholder="yyyy-MM-dd" value={startDate} onChange={(e) => setStartDate(e.target.value)}  required pattern="20[234]\d-\d?\d-\d?\d"/>
+                    <h1>End Date:</h1>
+                    <input className = "DateInput" type="text" placeholder="yyyy-MM-dd" value={endDate} onChange={(e) => setEndDate(e.target.value)} required pattern="20[234]\d-\d?\d-\d?\d" />        
                     { !isAllDay && (
                         <div>
                             <h1>Start Time:</h1>
                             <input className = "TimeInput" type="text" placeholder="HH:mm (AM/PM)" value={startTime} onChange={(e) => setStartTime(e.target.value)} required pattern="\d?\d:\d\d [AP]M"/>
-                            <h1>End Date:</h1>
-                            <input className = "DateInput" type="text" placeholder="yyyy-MM-dd" value={endDate} onChange={(e) => setEndDate(e.target.value)} required pattern="20[234]\d-\d?\d-\d?\d" />
                             <h1>End Time:</h1>
                             <input className = "TimeInput" type="text" placeholder="HH:mm (AM/PM)" value={endTime} onChange={(e) => setEndTime(e.target.value)} required pattern="\d?\d:\d\d [AP]M"/>
                         </div>
